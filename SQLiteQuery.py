@@ -26,10 +26,10 @@ class sqlite_query():
         return results
     
     def showtables(self):
-        return sql.query('SELECT name FROM sqlite_master WHERE type="table";')
+        return self.query('SELECT name FROM sqlite_master WHERE type="table";')
     
     def describe(self,table):
-        rawinfo = sql.query('PRAGMA table_info(%s);' % table)
+        rawinfo = self.query('PRAGMA table_info(%s);' % table)
         rawinfo = [x[1:] for x in rawinfo]
         df = pd.DataFrame(d,columns=['column','type','null','default','primary_key'])
         return df
