@@ -31,7 +31,7 @@ class sqlite_query():
     def describe(self,table):
         rawinfo = self.query('PRAGMA table_info(%s);' % table)
         rawinfo = [x[1:] for x in rawinfo]
-        df = pd.DataFrame(d,columns=['column','type','null','default','primary_key'])
+        df = pd.DataFrame(rawinfo,columns=['column','type','null','default','primary_key'])
         return df
 
     def inspect(self,table,n=1):
